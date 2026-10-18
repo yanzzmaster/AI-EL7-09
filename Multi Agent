@@ -1,0 +1,48 @@
+# multi_agent.py
+
+class Agent:
+    def __init__(self, name, role):
+        self.name = name
+        self.role = role
+
+    def perform_task(self, task_input):
+        print(f"[{self.name} - {self.role}] Sedang memproses: {task_input}")
+        # Logika sederhana tiap agen
+        if self.role == "Researcher":
+            return f"Data riset mengenai '{task_input}' berhasil dikumpulkan."
+        elif self.role == "Writer":
+            return f"Draft artikel berdasarkan data '{task_input}' selesai dibuat."
+        elif self.role == "Reviewer":
+            return f"Artikel '{task_input}' telah ditinjau dan disetujui."
+
+class MultiAgentEnvironment:
+    def __init__(self):
+        self.agents = []
+
+    def add_agent(self, agent):
+        self.agents.append(agent)
+
+    def run_workflow(self, initial_topic):
+        print("=== MULTI-AGENT SYSTEM WORKFLOW ===")
+        current_data = initial_topic
+        
+        for agent in self.agents:
+            current_data = agent.perform_task(current_data)
+            print(f"Hasil Output: {current_data}\n")
+
+if __name__ == "__main__":
+    # Inisialisasi Lingkungan Multi-Agent
+    env = MultiAgentEnvironment()
+
+    # Membuat Agen
+    agent1 = Agent("Agent Alpha", "Researcher")
+    agent2 = Agent("Agent Beta", "Writer")
+    agent3 = Agent("Agent Gamma", "Reviewer")
+
+    # Menambahkan Agen ke Sistem
+    env.add_agent(agent1)
+    env.add_agent(agent2)
+    env.add_agent(agent3)
+
+    # Menjalankan Workflow
+    env.run_workflow("Kecerdasan Buatan dalam Telekomunikasi")
