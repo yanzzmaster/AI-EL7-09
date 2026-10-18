@@ -1,32 +1,53 @@
-# Search Algorithms Implementation in Python
+PROJECT: Simple Expert System (Sistem Pakar) Diagnosis Penyakit Tanaman
+======================================================================
+1.Introduction:
+Aplikasi ini adalah program Sistem Pakar berbasis Command Line Interface (CLI)
+yang dibangun menggunakan bahasa pemrograman Python. 
 
-## Introduction
-This repository provides implementations of fundamental Artificial Intelligence (AI) search algorithms using Python. Search algorithms are essential techniques used in problem-solving and pathfinding within state spaces or graphs. 
+Program ini menerapkan metode pencarian Forward Chaining (Pelacakan Maju)
+untuk mencocokkan fakta berupa gejala-gejala tanaman yang diinputkan oleh 
+pengguna ke dalam basis pengetahuan (rules). Hasil akhirnya berupa identifikasi 
+jenis penyakit serta saran solusi penanganan yang tepat.
 
-This project covers two main categories of search methods:
-1. **Uninformed Search (Blind Search):**
-   - **Breadth-First Search (BFS):** Explores nodes level-by-level to guarantee the shortest path in unweighted graphs.
-   - **Depth-First Search (DFS):** Explores as deep as possible along each branch before backtracking.
-2. **Informed Search (Heuristic Search):**
-   - **A* (A-Star) Search:** Combines the actual cost to reach a node $g(n)$ and a heuristic estimate $h(n)$ to find the optimal path in weighted graphs ($f(n) = g(n) + h(n)$).
+Metode: Forward Chaining
+Bahasa: Python 3.x
+2. Requirements (Kebutuhan Sistem)
+Sebelum menjalankan program sistem pakar ini, pastikan perangkat komputer atau laptop telah memenuhi prasyarat berikut:
 
----
+Perangkat Lunak Utama: Python (Versi 3.x direkomendasikan).
 
-## Requirement
-To run this project, make sure you have the following installed on your system:
+Modul / Library: Tidak memerlukan instalasi library tambahan eksternal (murni menggunakan built-in library bawaan Python).
 
-* **Python 3.x** (Python 3.7 or higher recommended)
-* **Visual Studio Code (VS Code)** (Optional, recommended code editor)
-* **Git** (For cloning and managing the repository)
+Environment: Terminal, Command Prompt (Windows), atau PowerShell / Bash untuk menjalankan skrip berbasis CLI (Command Line Interface).
 
-*Note: No external third-party Python libraries are required, as the implementation uses Python's built-in modules (`collections` and `heapq`).*
+3. How to Use (Cara Penggunaan)
+Ikuti langkah-langkah berikut untuk mengoperasikan program di laptop masing-masing:
 
----
+1.Simpan File Program
+Buat sebuah file baru bernama expert_system.py di dalam folder project, lalu masukkan kode Python sistem pakar yang sudah dibuat sebelumnya.
 
-## How to Use
+2.Buka Terminal / Command Prompt
+Arahkan direktori terminal ke folder tempat file expert_system.py berada menggunakan perintah:
 
-### 1. Clone the Repository
-Clone this repository to your local machine using Git:
-```bash
-git clone [https://github.com/gerton123/AI-EL7-09.git](https://github.com/gerton123/AI-EL7-09.git)
-cd AI-EL7-09
+Bash
+
+
+cd path/ke/folder-project
+3.Jalankan Program
+Eksekusi program menggunakan perintah Python:
+
+Bash
+
+
+python expert_system.py
+4.Masukkan Input Gejala
+
+Program akan menampilkan daftar pilihan gejala (angka 1 sampai 4).
+
+Ketik nomor gejala yang ingin didiagnosis. Jika memilih lebih dari satu gejala, pisahkan menggunakan tanda koma (contoh: 1,2).
+
+Tekan Enter untuk memproses.
+
+3. Result (Hasil Output Program)
+Program sistem pakar ini memproses input pengguna menggunakan logika Forward Chaining untuk memberikan hasil diagnosis. 
+
