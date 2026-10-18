@@ -1,4 +1,4 @@
-PROJECT: Simple Expert System (Sistem Pakar) Diagnosis Penyakit Tanaman
+Simple Expert System (Sistem Pakar) Diagnosis Penyakit Tanaman
 ======================================================================
 1.Introduction:
 Aplikasi ini adalah program Sistem Pakar berbasis Command Line Interface (CLI)
