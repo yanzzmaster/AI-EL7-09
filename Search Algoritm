@@ -1,150 +1,92 @@
-from collections import deque
-import heapq
+"""
+======================================================================
+Forward Chaining Search Algorithm - Diagnosis Penyakit Tanaman
+======================================================================
+"""
 
-# ==========================================
-# 1. BREADTH-FIRST SEARCH (BFS)
-# ==========================================
-def bfs(graph, start, goal):
-    queue = deque([[start]])
-    visited = set()
-
-    while queue:
-        path = queue.popleft()
-        node = path[-1]
-
-        if node == goal:
-            return path
-
-        if node not in visited:
-            visited.add(node)
-            for neighbor in graph.get(node, []):
-                new_path = list(path)
-                new_path.append(neighbor)
-                queue.append(new_path)
-
-    return None
-
-
-# ==========================================
-# 2. DEPTH-FIRST SEARCH (DFS)
-# ==========================================
-def dfs(graph, start, goal, path=None, visited=None):
-    if path is None:
-        path = [start]
-    if visited is None:
-        visited = set()
-
-    node = path[-1]
-
-    if node == goal:
-        return path
-
-    visited.add(node)
-
-    for neighbor in graph.get(node, []):
-        if neighbor not in visited:
-            new_path = list(path)
-            new_path.append(neighbor)
-            result = dfs(graph, start, goal, new_path, visited)
-            if result:
-                return result
-
-    return None
-
-
-# ==========================================
-# 3. A* (A-STAR) SEARCH
-# ==========================================
-def a_star_search(graph, heuristic, start, goal):
-    # Queue menyimpan tuple: (f_cost, current_node, path, g_cost)
-    pq = [(heuristic[start], start, [start], 0)]
-    visited = set()
-
-    while pq:
-        f, current, path, g = heapq.heappop(pq)
-
-        if current == goal:
-            return path, g
-
-        if current in visited:
-            continue
-        visited.add(current)
-
-        for neighbor, weight in graph.get(current, {}).items():
-            if neighbor not in visited:
-                new_g = g + weight
-                new_f = new_g + heuristic[neighbor]
-                heapq.heappush(pq, (new_f, neighbor, path + [neighbor], new_g))
-
-    return None, float('inf')
-
-
-# ==========================================
-# DATA UJI COBA (GRAF & HEURISTIK)
-# ==========================================
-
-# Graf Unweighted (Untuk BFS dan DFS)
-graph_unweighted = {
-    'A': ['B', 'C'],
-    'B': ['D', 'E'],
-    'C': ['F'],
-    'D': ['G'],
-    'E': ['G'],
-    'F': ['G'],
-    'G': []
+# 1. KUMPULAN DATA GEJALA (FACTS)
+GEJALA = {
+    "1": "Daun menguning dan layu",
+    "2": "Bercak cokelat atau hitam pada daun",
+    "3": "Batang membusuk dan berbau busuk",
+    "4": "Pertumbuhan tanaman kerdil atau terhambat"
 }
 
-# Graf Weighted (Untuk A* Search)
-graph_weighted = {
-    'A': {'B': 1, 'C': 4},
-    'B': {'D': 2, 'E': 5},
-    'C': {'F': 3},
-    'D': {'G': 1},
-    'E': {'G': 2},
-    'F': {'G': 4},
-    'G': {}
-}
+# 2. BASIS PENGETAHUAN / RULES (KNOWLEDGE BASE)
+RULES = [
+    {
+        "penyakit": "Penyakit Busuk Batang",
+        "gejala_butuh": {"1", "3"},
+        "solusi": "Pangkas bagian busuk, kurangi penyiraman, dan berikan fungisida/bakterisida."
+    },
+    {
+        "penyakit": "Penyakit Bercak Daun",
+        "gejala_butuh": {"2"},
+        "solusi": "Buang daun terinfeksi dan semprotkan fungisida secara berkala."
+    },
+    {
+        "penyakit": "Defisiensi Nutrisi (Kekurangan Unsur Hara)",
+        "gejala_butuh": {"1", "4"},
+        "solusi": "Berikan pupuk NPK dan periksa pH tanah."
+    },
+    {
+        "penyakit": "Infeksi Virus / Hama Akar",
+        "gejala_butuh": {"2", "4"},
+        "solusi": "Gunakan nematisida atau isolasi tanaman dari tanaman lain."
+    }
+]
 
-# Nilai Estimasi Heuristik ke 'G' (Untuk A*)
-heuristic = {
-    'A': 7,
-    'B': 6,
-    'C': 2,
-    'D': 3,
-    'E': 1,
-    'F': 2,
-    'G': 0
-}
+# 3. SEARCH ENGINE (FORWARD CHAINING)
+def forward_chaining_search(fakta_gejala):
+    fakta_set = set(fakta_gejala)
+    hasil_penyakit = []
 
+    # Melakukan pencarian dari fakta yang ada menuju aturan yang cocok
+    for rule in RULES:
+        if rule["gejala_butuh"].issubset(fakta_set):
+            hasil_penyakit.append(rule)
 
-# ==========================================
-# EKSEKUSI PROGRAM
-# ==========================================
-if __name__ == '__main__':
-    start_node = 'A'
-    goal_node = 'G'
+    return hasil_penyakit
 
-    print("==========================================")
-    print(f"PENCARIAN JALUR DARI '{start_node}' KE '{goal_node}'")
-    print("==========================================")
+# 4. INTERFACE CLI
+def main():
+    print("======================================================================")
+    print("      DIAGNOSIS PENYAKIT TANAMAN (FORWARD CHAINING SEARCH)")
+    print("======================================================================")
+    print("Daftar Gejala:")
+    for kode, nama in GEJALA.items():
+        print(f" [{kode}] {nama}")
+    print("----------------------------------------------------------------------")
+    
+    user_input = input("Masukkan nomor gejala (pisahkan dengan koma, contoh: 1,3): ").strip()
+    
+    if not user_input:
+        print("Input kosong.")
+        return
 
-    # 1. Jalankan BFS
-    bfs_path = bfs(graph_unweighted, start_node, goal_node)
-    print("\n1. Breadth-First Search (BFS):")
-    print(f"   Jalur: {' -> '.join(bfs_path) if bfs_path else 'Tidak ditemukan'}")
+    # Parsing input
+    gejala_terpilih = [g.strip() for g in user_input.split(",") if g.strip() in GEJALA]
 
-    # 2. Jalankan DFS
-    dfs_path = dfs(graph_unweighted, start_node, goal_node)
-    print("\n2. Depth-First Search (DFS):")
-    print(f"   Jalur: {' -> '.join(dfs_path) if dfs_path else 'Tidak ditemukan'}")
+    if not gejala_terpilih:
+        print("Gejala tidak ditemukan/tidak valid.")
+        return
 
-    # 3. Jalankan A* Search
-    astar_path, astar_cost = a_star_search(graph_weighted, heuristic, start_node, goal_node)
-    print("\n3. A* (A-Star) Search:")
-    if astar_path:
-        print(f"   Jalur: {' -> '.join(astar_path)}")
-        print(f"   Total Biaya (Cost): {astar_cost}")
+    print("\n[+] Gejala terdeteksi:")
+    for g in gejala_terpilih:
+        print(f"    - {GEJALA[g]}")
+
+    # Eksekusi algoritma pencarian
+    hasil_search = forward_chaining_search(gejala_terpilih)
+
+    print("\n======================================================================")
+    print("HASIL DIAGNOSIS (GOAL):")
+    print("======================================================================")
+    if hasil_search:
+        for idx, res in enumerate(hasil_search, 1):
+            print(f"\n{idx}. Penyakit : {res['penyakit']}")
+            print(f"   Solusi   : {res['solusi']}")
     else:
-        print("   Jalur tidak ditemukan")
+        print("\nTidak ditemukan diagnosis yang cocok untuk kombinasi gejala tersebut.")
 
-    print("==========================================")
+if __name__ == "__main__":
+    main()
