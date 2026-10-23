@@ -1,6 +1,8 @@
 Simple Expert System (Sistem Pakar) Diagnosis Penyakit Tanaman
 ======================================================================
 1.Introduction:
+
+
 Aplikasi ini adalah program Sistem Pakar berbasis Command Line Interface (CLI)
 yang dibangun menggunakan bahasa pemrograman Python. 
 
@@ -14,6 +16,8 @@ Bahasa: Python 3.x
 
 
 2. Requirements (Kebutuhan Sistem)
+
+
 Sebelum menjalankan program sistem pakar ini, pastikan perangkat komputer atau laptop telah memenuhi prasyarat berikut:
 
 Perangkat Lunak Utama: Python (Versi 3.x direkomendasikan).
@@ -25,6 +29,8 @@ Environment: Terminal, Command Prompt (Windows), atau PowerShell / Bash untuk me
 
 
 3. How to Use (Cara Penggunaan)
+
+
 Ikuti langkah-langkah berikut untuk mengoperasikan program di laptop masing-masing:
 
 1.Simpan File Program
