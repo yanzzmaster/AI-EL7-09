@@ -6,38 +6,52 @@ class Agent:
         self.role = role
 
     def perform_task(self, task_input):
-        print(f"[{self.name} - {self.role}] Sedang memproses: {task_input}")
-        # Logika sederhana tiap agen
-        if self.role == "Researcher":
-            return f"Data riset mengenai '{task_input}' berhasil dikumpulkan."
-        elif self.role == "Writer":
-            return f"Draft artikel berdasarkan data '{task_input}' selesai dibuat."
-        elif self.role == "Reviewer":
-            return f"Artikel '{task_input}' telah ditinjau dan disetujui."
+        print(f"[{self.name} - {self.role}] Sedang memproses data tanaman...")
+        
+        if self.role == "Plant Pathologist":
+            # Agen 1: Menganalisis gejala tanaman
+            return {
+                "tanaman": task_input,
+                "diagnosa": "Terganggu oleh Jamur Daun (Fungal Leaf Spot)",
+                "tingkat_parah": "Sedang"
+            }
+        elif self.role == "Agricultural Advisor":
+            # Agen 2: Merumuskan rekomendasi penanganan
+            diagnosa = task_input["diagnosa"]
+            rekomendasi = "Semprotkan fungisida organik dan pangkas daun yang terinfeksi."
+            return {
+                **task_input,
+                "rekomendasi": rekomendasi
+            }
+        elif self.role == "Quality Checker":
+            # Agen 3: Memeriksa kelayakan laporan akhir
+            return f"Laporan Akhir: Tanaman {task_input['tanaman']} terdiagnosa '{task_input['diagnosa']}'. Tindakan: {task_input['rekomendasi']} (Status: TERVERIFIKASI AMAN)."
 
-class MultiAgentEnvironment:
+
+class PlantMultiAgentEnvironment:
     def __init__(self):
         self.agents = []
 
     def add_agent(self, agent):
         self.agents.append(agent)
 
-    def run_workflow(self, initial_topic):
-        print("=== MULTI-AGENT SYSTEM WORKFLOW ===")
-        current_data = initial_topic
+    def run_workflow(self, nama_tanaman):
+        print(f"=== SYSTEM MULTI-AGENT: ELSALVADOR PLANT HEALTH SYSTEM ===")
+        print(f"Input Tanaman: {nama_tanaman}\n" + "-"*50)
         
+        current_data = nama_tanaman
         for agent in self.agents:
             current_data = agent.perform_task(current_data)
-            print(f"Hasil Output: {current_data}\n")
+            print(f"Hasil Kerja Agen -> {current_data}\n")
 
 if __name__ == "__main__":
-    # Inisialisasi Lingkungan Multi-Agent
-    env = MultiAgentEnvironment()
+    # Inisialisasi Environment
+    env = PlantMultiAgentEnvironment()
 
-    # Membuat Agen
-    agent1 = Agent("Agent Alpha", "Researcher")
-    agent2 = Agent("Agent Beta", "Writer")
-    agent3 = Agent("Agent Gamma", "Reviewer")
+    # Membuat Agen Spesialis Pertanian
+    agent1 = Agent("Agent Alpha", "Plant Pathologist")      # Agen Peneliti/Pakar Diagnosa
+    agent2 = Agent("Agent Beta", "Agricultural Advisor")    # Agen Penasihat Solusi
+    agent3 = Agent("Agent Gamma", "Quality Checker")        # Agen Verifikator
 
     # Menambahkan Agen ke Sistem
     env.add_agent(agent1)
@@ -45,4 +59,4 @@ if __name__ == "__main__":
     env.add_agent(agent3)
 
     # Menjalankan Workflow
-    env.run_workflow("Kecerdasan Buatan dalam Telekomunikasi")
+    env.run_workflow("Tanaman Tomat")
