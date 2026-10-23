@@ -1,15 +1,16 @@
-# Multi-Agent System Implementation
+# Multi-Agent System: Plant Health Analysis & Advisory
 
 ## Introduction
-Sistem Multi-Agent ini dirancang untuk mendemonstrasikan kolaborasi antar-agen cerdas secara sekuensial. Dalam sistem ini, setiap agen memiliki peran terdefinisi (seperti *Researcher*, *Writer*, dan *Reviewer*) yang bekerja sama untuk memproses suatu topik input hingga menghasilkan luaran akhir yang tervalidasi.
+Sistem Multi-Agent ini dirancang khusus untuk menganalisis kesehatan tanaman dan memberikan rekomendasi penanganan secara otomatis. Sistem ini mengoordinasikan tiga agen independen:
+1. **Plant Pathologist**: Menganalisis gejala awal dan mendiagnosa penyakit tanaman.
+2. **Agricultural Advisor**: Merumuskan penanganan dan solusi berdasarkan hasil diagnosa.
+3. **Quality Checker**: Memeriksa kelayakan dan mengonfirmasi laporan akhir secara menyeluruh.
 
 ## Requirements
-Sebelum menjalankan program ini, pastikan perangkat Anda telah memenuhi persyaratan berikut:
-- **Python**: Versi 3.7 atau yang lebih baru.
-- Tidak diperlukan pustaka (*library*) pihak ketiga tambahan karena program menggunakan modul bawaan Python (*standard library*).
+- Python 3.7 atau versi yang lebih baru.
+- Tidak memerlukan pustaka (*library*) pihak ketiga tambahan.
 
 ## How to Use
-1. **Clone Repositori**:
-   Unduh repositori ke komputer lokal Anda:
+1. Jalankan script Python melalui terminal/command prompt:
    ```bash
-   git clone [https://github.com/yanzzmaster/AI-EL7-09.git](https://github.com/yanzzmaster/AI-EL7-09.git)
+   python multi_agent.py
