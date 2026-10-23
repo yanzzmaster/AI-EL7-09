@@ -12,7 +12,7 @@ pengguna ke dalam basis pengetahuan (rules). Hasil akhirnya berupa identifikasi
 jenis penyakit serta saran solusi penanganan yang tepat.
 
 Metode: Forward Chaining
-Bahasa: Python 3.x
+Bahasa: Python 3.10
 
 
 2. Requirements (Kebutuhan Sistem)
@@ -20,7 +20,7 @@ Bahasa: Python 3.x
 
 Sebelum menjalankan program sistem pakar ini, pastikan perangkat komputer atau laptop telah memenuhi prasyarat berikut:
 
-Perangkat Lunak Utama: Python (Versi 3.x direkomendasikan).
+Perangkat Lunak Utama: Python versi 3.10.
 
 Modul / Library: Tidak memerlukan instalasi library tambahan eksternal (murni menggunakan built-in library bawaan Python).
 
@@ -58,6 +58,6 @@ Ketik nomor gejala yang ingin didiagnosis. Jika memilih lebih dari satu gejala, 
 
 Tekan Enter untuk memproses.
 
-3. Result (Hasil Output Program)
+4. Result (Hasil Output Program)
 Program sistem pakar ini memproses input pengguna menggunakan logika Forward Chaining untuk memberikan hasil diagnosis. 
 
