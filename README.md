@@ -38,18 +38,16 @@ Buat sebuah file baru bernama expert_system.py di dalam folder project, lalu mas
 
 2.Buka Terminal / Command Prompt
 Arahkan direktori terminal ke folder tempat file expert_system.py berada menggunakan perintah:
-
 Bash
-
-
 cd path/ke/folder-project
+
+
 3.Jalankan Program
 Eksekusi program menggunakan perintah Python:
-
 Bash
-
-
 python expert_system.py
+
+
 4.Masukkan Input Gejala
 
 Program akan menampilkan daftar pilihan gejala (angka 1 sampai 4).
