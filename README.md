@@ -1,32 +1,37 @@
-# Search Algorithms Implementation in Python
+# Forward Chaining Search Algorithm - Diagnosis Penyakit Tanaman
 
-## Introduction
-This repository provides implementations of fundamental Artificial Intelligence (AI) search algorithms using Python. Search algorithms are essential techniques used in problem-solving and pathfinding within state spaces or graphs. 
-
-This project covers two main categories of search methods:
-1. **Uninformed Search (Blind Search):**
-   - **Breadth-First Search (BFS):** Explores nodes level-by-level to guarantee the shortest path in unweighted graphs.
-   - **Depth-First Search (DFS):** Explores as deep as possible along each branch before backtracking.
-2. **Informed Search (Heuristic Search):**
-   - **A* (A-Star) Search:** Combines the actual cost to reach a node $g(n)$ and a heuristic estimate $h(n)$ to find the optimal path in weighted graphs ($f(n) = g(n) + h(n)$).
+Aplikasi berbasis Command Line Interface (CLI) menggunakan bahasa pemrograman Python yang mengimplementasikan metode pencarian **Forward Chaining** (data-driven search) untuk mencocokkan fakta berupa gejala tanaman dengan aturan (*rules*) yang ada guna menghasilkan kesimpulan diagnosis.
 
 ---
 
-## Requirement
-To run this project, make sure you have the following installed on your system:
+## Introduction
 
-* **Python 3.x** (Python 3.7 or higher recommended)
-* **Visual Studio Code (VS Code)** (Optional, recommended code editor)
-* **Git** (For cloning and managing the repository)
+Program ini mensimulasikan pencarian jalur kesimpulan (*goal state*) menggunakan pendekatan pelacakan maju (*forward chaining*). Algoritma ini bekerja dengan mengambil fakta awal berupa gejala-gejala yang diinputkan pengguna, lalu menelusuri basis pengetahuan untuk menemukan aturan yang cocok dan menghasilkan solusi yang tepat.
 
-*Note: No external third-party Python libraries are required, as the implementation uses Python's built-in modules (`collections` and `heapq`).*
+- **Metode**: Forward Chaining (Search Algorithm)
+- **Bahasa**: Python 3.x
+- **Environment**: Terminal / Command Prompt / Bash (CLI)
+
+---
+
+## Requirements
+
+Sebelum menjalankan program, pastikan perangkat telah memenuhi prasyarat berikut:
+
+1. **Perangkat Lunak Utama**: Python (Versi 3.x direkomendasikan).
+2. **Modul / Library**: Tidak memerlukan instalasi library tambahan eksternal (murni menggunakan built-in library bawaan Python).
+3. **Environment**: Terminal, Command Prompt (Windows), atau PowerShell / Bash untuk menjalankan skrip berbasis CLI.
 
 ---
 
 ## How to Use
 
-### 1. Clone the Repository
-Clone this repository to your local machine using Git:
-```bash
-git clone [https://github.com/gerton123/AI-EL7-09.git](https://github.com/gerton123/AI-EL7-09.git)
-cd AI-EL7-09
+Ikuti langkah-langkah berikut untuk mengoperasikan program:
+
+1. **Simpan File Program**
+   Buat sebuah file baru bernama `search_algorithm.py` di dalam folder project, lalu masukkan kode Python pencarian forward chaining yang telah dibuat.
+
+2. **Buka Terminal / Command Prompt**
+   Arahkan direktori terminal ke folder tempat file tersebut berada menggunakan perintah:
+   ```bash
+   cd path/ke/folder-project
