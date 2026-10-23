@@ -11,6 +11,8 @@ jenis penyakit serta saran solusi penanganan yang tepat.
 
 Metode: Forward Chaining
 Bahasa: Python 3.x
+
+
 2. Requirements (Kebutuhan Sistem)
 Sebelum menjalankan program sistem pakar ini, pastikan perangkat komputer atau laptop telah memenuhi prasyarat berikut:
 
@@ -19,6 +21,8 @@ Perangkat Lunak Utama: Python (Versi 3.x direkomendasikan).
 Modul / Library: Tidak memerlukan instalasi library tambahan eksternal (murni menggunakan built-in library bawaan Python).
 
 Environment: Terminal, Command Prompt (Windows), atau PowerShell / Bash untuk menjalankan skrip berbasis CLI (Command Line Interface).
+
+
 
 3. How to Use (Cara Penggunaan)
 Ikuti langkah-langkah berikut untuk mengoperasikan program di laptop masing-masing:
